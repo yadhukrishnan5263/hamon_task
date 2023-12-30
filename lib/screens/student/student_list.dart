@@ -138,7 +138,6 @@ class _StudentsListState extends State<StudentsList> {
                           width: h * 0.07,
 
                           decoration: BoxDecoration(
-                              color: Colors.red,
                               image: DecorationImage(
                                   image: AssetImage(
                                       "assets/profilepic.png")),
