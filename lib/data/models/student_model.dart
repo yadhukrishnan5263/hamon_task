@@ -12,6 +12,8 @@ class StudentModel {
   int age;
   String email;
   int id;
+  bool assigned;
+  int reg_id;
   String name;
 
   StudentModel({
@@ -19,13 +21,15 @@ class StudentModel {
     required this.email,
     required this.id,
     required this.name,
+    required this.assigned,
+    required this.reg_id
   });
 
   factory StudentModel.fromJson(Map<String, dynamic> json) => StudentModel(
     age: json["age"],
     email: json["email"],
     id: json["id"],
-    name: json["name"],
+    name: json["name"], assigned: false, reg_id: 0,
   );
 
   Map<String, dynamic> toJson() => {

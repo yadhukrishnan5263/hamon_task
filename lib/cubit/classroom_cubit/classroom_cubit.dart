@@ -52,6 +52,9 @@ assignSudent({required BuildContext context,required int id,required int student
           await repo.assignSutdent(student: student, subject: value["subject"], context: context).then((value) {
             showSuccess(context, "Student assigned successfully");
             hideLoading(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
           });
         }else if(value["subject"]==""){
           showError(context, "Subject not assigned yet");

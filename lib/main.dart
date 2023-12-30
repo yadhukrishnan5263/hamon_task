@@ -12,6 +12,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => ClassroomCubit()),
+    BlocProvider(create: (context) => StudentCubit(),)
   ],
   child: const MyApp()));
 }
