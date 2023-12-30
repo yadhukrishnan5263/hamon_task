@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                     builder: (context) => BlocProvider(
                       create: (context) => ClassroomCubit(),
-                      child: ClassRooms(),
+                      child: ClassRooms(buttonVisible:false, sub_id: 0, sut_id: 0,),
                     ),
                   ));
             },

@@ -7,7 +7,10 @@ import 'package:untitled/cubit/subject_cubit/subject_cubit.dart';
 import 'package:untitled/data/utils/custom_container.dart';
 
 class ClassRooms extends StatefulWidget {
-  const ClassRooms({super.key});
+  final bool buttonVisible;
+  final int sub_id;
+  final int sut_id;
+  const ClassRooms({super.key, required this.buttonVisible, required this.sub_id, required this.sut_id});
 
   @override
   State<ClassRooms> createState() => _ClassRoomsState();
@@ -96,16 +99,30 @@ class _ClassRoomsState extends State<ClassRooms> {
                                               ),
                                               Text("Size     : ${state.classroom[index].size}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),),
                                               Center(
-                                                child: Padding(
-                                                  padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                                                  child: Container(height: 35,
-                                                    width: w*0.7,
+                                                child: Visibility(
+                                                  visible: widget.buttonVisible,
+                                                  replacement: Container(),
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                                    child: GestureDetector(
+                                                      onTap: (){
+                                                        if(widget.sub_id!=0){
+                                                          context.read<ClassroomCubit>().assignSubject(context: context, id: state.classroom[index].id, subject: widget.sub_id);
+                                                        }
+                                                        if(widget.sut_id!=0){
+                                                          context.read<ClassroomCubit>().assignSudent(context: context, id: state.classroom[index].id, student: widget.sut_id);
+                                                        }
+                                                      },
+                                                      child: Container(height: 35,
+                                                        width: w*0.7,
 
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.green,
-                                                      borderRadius: BorderRadius.circular(10),
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.green,
+                                                          borderRadius: BorderRadius.circular(10),
+                                                        ),
+                                                        child: Center(child: Text("Assign",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w900),)),
+                                                      ),
                                                     ),
-                                                    child: Center(child: Text("Assign",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w900),)),
                                                   ),
                                                 ),
                                               )

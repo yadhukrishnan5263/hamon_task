@@ -10,7 +10,10 @@ import 'package:untitled/screens/subject/subject_list.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(create: (context) => ClassroomCubit()),
+  ],
+  child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

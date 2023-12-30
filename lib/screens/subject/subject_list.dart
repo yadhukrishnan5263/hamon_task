@@ -5,6 +5,9 @@ import 'package:untitled/cubit/student_cubit/student_cubit.dart';
 import 'package:untitled/cubit/subject_cubit/subject_cubit.dart';
 import 'package:untitled/data/utils/custom_container.dart';
 
+import '../../cubit/classroom_cubit/classroom_cubit.dart';
+import '../classroom/classrooms.dart';
+
 class SubjectList extends StatefulWidget {
   const SubjectList({super.key});
 
@@ -97,14 +100,26 @@ class _SubjectListState extends State<SubjectList> {
                                               Center(
                                                 child: Padding(
                                                   padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                                                  child: Container(height: 35,
-                                                    width: w*0.7,
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) => BlocProvider(
+                                                              create: (context) => ClassroomCubit(),
+                                                              child: ClassRooms(buttonVisible:true, sub_id: state.subjects[index].id, sut_id: 0,),
+                                                            ),
+                                                          ));
+                                                    },
+                                                    child: Container(height: 35,
+                                                      width: w*0.7,
 
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.green,
-                                                      borderRadius: BorderRadius.circular(10),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.green,
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
+                                                      child: Center(child: Text("Assign To Class",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w900),)),
                                                     ),
-                                                    child: Center(child: Text("Assign To Class",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w900),)),
                                                   ),
                                                 ),
                                               )

@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/cubit/student_cubit/student_cubit.dart';
 import 'package:untitled/data/utils/custom_container.dart';
 
+import '../../cubit/classroom_cubit/classroom_cubit.dart';
+import '../classroom/classrooms.dart';
+
 class StudentsList extends StatefulWidget {
   const StudentsList({super.key});
 
@@ -96,14 +99,26 @@ class _StudentsListState extends State<StudentsList> {
                                         Center(
                                           child: Padding(
                                             padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                                            child: Container(height: 35,
-                                            width: w*0.7,
-
-                                            decoration: BoxDecoration(
-                                              color: Colors.green,
-                                              borderRadius: BorderRadius.circular(10),
-                                            ),
-                                              child: Center(child: Text("Assign To Class",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w900),)),
+                                            child: GestureDetector(
+                                              onTap: (){
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) => BlocProvider(
+                                                        create: (context) => ClassroomCubit(),
+                                                        child: ClassRooms(buttonVisible:true, sut_id: state.students[index].id, sub_id: 0,),
+                                                      ),
+                                                    ));
+                                              },
+                                              child: Container(height: 35,
+                                              width: w*0.7,
+                                              
+                                              decoration: BoxDecoration(
+                                                color: Colors.green,
+                                                borderRadius: BorderRadius.circular(10),
+                                              ),
+                                                child: Center(child: Text("Assign To Class",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w900),)),
+                                              ),
                                             ),
                                           ),
                                         )

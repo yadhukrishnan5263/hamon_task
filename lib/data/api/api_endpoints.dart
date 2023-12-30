@@ -4,6 +4,7 @@ class ApiEndPoints {
   static const String students ='/students';
   static const String subjects ='/subjects';
   static const String classrooms ='/classrooms';
+  static const String registration ='/registration';
 
 
 
